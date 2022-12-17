@@ -1,6 +1,6 @@
 # Tourist Service
 # Start Time: 2022-12-17 18:00:00
-# End Time: 
+# End Time: 2022-12-17 20:25:00
 # Environment Setup
 
 
@@ -14,5 +14,7 @@
 	- POSTGRES_DB  		-> PostgreSQL database
 	- POSTGRES_SCHEMA  	-> PostgreSQL schema
 	- ROOT_SERVICE_URL	-> Base URL of Tourist REST API Endpoint
+3. API Documentation
+   Swagger Endpoint - http://localhost:8080/swagger-ui/
 
 

@@ -1,0 +1,56 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: 'true'
+        format_sql: 'true'
+        show_sql: 'true'
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    password: ${POSTGRES_PASSWORD}
+    username: ${POSTGRES_USER}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?currentSchema=${POSTGRES_SCHEMA}
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  application:
+    name: tourist-service    
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: trace
+
+resilience4j:
+  retry:
+    retry-aspect-order: 2
+    instances:
+      getTouristServiceRetry:
+        max-attempts: 3
+        wait-duration: 5s
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        retry-exceptions:
+          - org.springframework.web.client.RestClientException
+          - org.springframework.web.client.HttpClientErrorException
+  circuitbreaker:
+    circuit-breaker-aspect-order: 1
+    instances:
+      getTouristServiceBreaker:
+        wait-duration-in-open-state: 1m
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-type: count-based
+        sliding-window-size: 5
+        minimum-number-of-calls: 5
+        slow-call-duration-threshold: 10s
+        slow-call-rate-threshold: 60
+        failure-rate-threshold: 60
+        
+root-service-url: ${ROOT_SERVICE_URL}
