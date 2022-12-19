@@ -8,7 +8,7 @@ spring:
         format_sql: 'true'
         show_sql: 'true'
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     password: ${POSTGRES_PASSWORD}

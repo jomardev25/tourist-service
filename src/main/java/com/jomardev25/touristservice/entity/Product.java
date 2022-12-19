@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,19 +24,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "products")
+@Table(name = "products", uniqueConstraints = { @UniqueConstraint(columnNames = "name") })
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "name")
+	@Column(name = "name", length = 255)
 	private String name;
 
-	@Column(name = "description")
+	@Column(name = "description", length = 255)
 	private String description;
 
 }

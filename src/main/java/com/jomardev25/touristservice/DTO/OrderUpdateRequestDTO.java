@@ -1,6 +1,5 @@
 package com.jomardev25.touristservice.DTO;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -18,8 +17,7 @@ import lombok.ToString;
 @ToString
 public class OrderUpdateRequestDTO {
 
-	@NotEmpty(message = "Product field must not be empty.")
-	@NotNull(message = "Product field must not be empty.")
-	private String product;
+	@NotNull(message = "Product Id must not be empty.")
+	private int productId;
 
 }

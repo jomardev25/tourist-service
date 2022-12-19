@@ -2,6 +2,8 @@ package com.jomardev25.touristservice.DTO;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +23,8 @@ public class TouristResponseDTO {
 	private String touristName;
 	private String touristEmail;
 	private String touristLocation;
+
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private Date createdat;
 
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.jomardev25.touristservice.DTO.OrderRequestDTO;
 import com.jomardev25.touristservice.DTO.OrderResponseDTO;
 import com.jomardev25.touristservice.DTO.OrderSingleResponseDTO;
@@ -66,7 +65,6 @@ public class OrderController {
 		orderService.deleteOrder(id);
 		return ResponseEntity.ok().body("Order deleted successfully.");
 	}
-
 }
 
 
